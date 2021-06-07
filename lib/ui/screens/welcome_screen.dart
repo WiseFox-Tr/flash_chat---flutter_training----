@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../routes.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -41,9 +42,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 color: Colors.lightBlueAccent,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
-                  onPressed: () {
-                    //Go to login screen.
-                  },
+                  onPressed: () => Navigator.pushNamed(context, IdScreen.login_screen),
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
@@ -59,9 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 borderRadius: BorderRadius.circular(30.0),
                 elevation: 5.0,
                 child: MaterialButton(
-                  onPressed: () {
-                    //Go to registration screen.
-                  },
+                  onPressed: () => Navigator.pushNamed(context, IdScreen.registration_screen),
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
