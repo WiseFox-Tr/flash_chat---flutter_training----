@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flash_chat/constants.dart';
+import 'package:flash_chat/AppConst.dart';
+
+import '../../AppConst.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -28,7 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-              decoration: kMessageContainerDecoration,
+              decoration: AppConst.messageContainerDecoration,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -37,7 +39,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       onChanged: (value) {
                         //todo : Do something with the user input.
                       },
-                      decoration: kMessageTextFieldDecoration,
+                      decoration: AppConst.messageTextFieldDecoration,
                     ),
                   ),
                   TextButton(
@@ -46,7 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     },
                     child: Text(
                       'Send',
-                      style: kSendButtonTextStyle,
+                      style: AppConst.sendButtonTextStyle,
                     ),
                   ),
                 ],
