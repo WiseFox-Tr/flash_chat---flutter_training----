@@ -16,7 +16,7 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                //Implement logout functionality
+                //todo : Implement logout functionality
               }),
         ],
         title: Text('⚡️Chat'),
@@ -35,14 +35,14 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: TextField(
                       onChanged: (value) {
-                        //Do something with the user input.
+                        //todo : Do something with the user input.
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
-                      //Implement send functionality.
+                      //todo : Implement send functionality.
                     },
                     child: Text(
                       'Send',
