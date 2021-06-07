@@ -1,21 +1,19 @@
+import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flash_chat/screens/welcome_screen.dart';
-import 'package:flash_chat/screens/login_screen.dart';
-import 'package:flash_chat/screens/registration_screen.dart';
-import 'package:flash_chat/screens/chat_screen.dart';
 
-void main() => runApp(FlashChat());
+void main() => runApp(FlashChatApp());
 
-class FlashChat extends StatelessWidget {
+class FlashChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.black54),
+          bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      home: WelcomeScreen(),
+      routes: AppRoutes.routes,
+      initialRoute: IdScreen.welcome_screen,
     );
   }
 }
