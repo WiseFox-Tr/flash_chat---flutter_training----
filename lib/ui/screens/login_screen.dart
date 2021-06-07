@@ -1,3 +1,4 @@
+import 'package:flash_chat/AppConst.dart';
 import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +18,12 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 200.0,
-              child: Image.asset('images/logo.png'),
+            Hero(
+              tag: AppConst.tagHeroLogo,
+              child: Container(
+                child: Image.asset('images/logo.png'),
+                height: 200.0,
+              ),
             ),
             SizedBox(
               height: 48.0,
