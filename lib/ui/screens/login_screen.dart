@@ -1,3 +1,4 @@
+import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                //Do something with the user input.
+                //todo : Do something with the user input.
               },
               decoration: InputDecoration(
                 hintText: 'Enter your email',
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                //Do something with the user input.
+                //todo : Do something with the user input.
               },
               decoration: InputDecoration(
                 hintText: 'Enter your password.',
@@ -83,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                    //Implement login functionality.
+                    //todo : Implement login functionality.
+                    Navigator.pushNamed(context, IdScreen.chat_screen);
                   },
                   minWidth: 200.0,
                   height: 42.0,

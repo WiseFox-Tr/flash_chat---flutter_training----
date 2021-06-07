@@ -1,3 +1,4 @@
+import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             TextField(
               onChanged: (value) {
-                //Do something with the user input.
+                //todo : Do something with the user input.
               },
               decoration: InputDecoration(
                 hintText: 'Enter your email',
@@ -49,7 +50,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             TextField(
               onChanged: (value) {
-                //Do something with the user input.
+                //todo : Do something with the user input.
               },
               decoration: InputDecoration(
                 hintText: 'Enter your password',
@@ -79,7 +80,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                    //Implement registration functionality.
+                    //todo : Implement registration functionality.
+                    Navigator.pushNamed(context, IdScreen.chat_screen);
                   },
                   minWidth: 200.0,
                   height: 42.0,
