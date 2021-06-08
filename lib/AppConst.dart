@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppConst {
   static const String tagHeroLogo = 'tagHeroLogo';
+  static const String tagLoginBtn = 'tagLoginBtn';
+  static const String tagRegisterBtn = 'tagRegisterBtn';
 
   static const sendButtonTextStyle = TextStyle(
     color: Colors.lightBlueAccent,
