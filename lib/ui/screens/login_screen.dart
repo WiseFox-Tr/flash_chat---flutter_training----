@@ -47,13 +47,16 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 24.0,
             ),
-            RoundedButton(
-              label: AppConst.strLoginBtn,
-              color: Colors.lightBlueAccent,
-              onPressed: () {
-                //todo : Implement login functionality.
-                Navigator.pushNamed(context, IdScreen.chat_screen);
-              },
+            Hero(
+              tag: AppConst.tagLoginBtn,
+              child: RoundedButton(
+                label: AppConst.strLoginBtn,
+                color: Colors.lightBlueAccent,
+                onPressed: () {
+                  //todo : Implement login functionality.
+                  Navigator.pushNamed(context, IdScreen.chat_screen);
+                },
+              ),
             ),
           ],
         ),

@@ -48,13 +48,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             SizedBox(
               height: 24.0,
             ),
-            RoundedButton(
-              label: AppConst.strRegisterBtn,
-              color: Colors.blueAccent,
-              onPressed: () {
-                //todo : Implement login functionality.
-                Navigator.pushNamed(context, IdScreen.chat_screen);
-              },
+            Hero(
+              tag: AppConst.tagRegisterBtn,
+              child: RoundedButton(
+                label: AppConst.strRegisterBtn,
+                color: Colors.blueAccent,
+                onPressed: () {
+                  //todo : Implement register functionality.
+                  Navigator.pushNamed(context, IdScreen.chat_screen);
+                },
+              ),
             ),
           ],
         ),

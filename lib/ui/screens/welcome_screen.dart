@@ -56,15 +56,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             SizedBox(
               height: 48.0,
             ),
-            RoundedButton(
-              label: AppConst.strLoginBtn,
-              color: Colors.lightBlueAccent,
-              onPressed: () => Navigator.pushNamed(context, IdScreen.login_screen),
+            Hero(
+              tag: AppConst.tagLoginBtn,
+              child: RoundedButton(
+                label: AppConst.strLoginBtn,
+                color: Colors.lightBlueAccent,
+                onPressed: () => Navigator.pushNamed(context, IdScreen.login_screen),
+              ),
             ),
-            RoundedButton(
-              label: AppConst.strRegisterBtn,
-              color: Colors.blueAccent,
-              onPressed: () => Navigator.pushNamed(context, IdScreen.registration_screen),
+            Hero(
+              tag: AppConst.tagRegisterBtn,
+              child: RoundedButton(
+                label: AppConst.strRegisterBtn,
+                color: Colors.blueAccent,
+                onPressed: () => Navigator.pushNamed(context, IdScreen.registration_screen),
+              ),
             ),
           ],
         ),
