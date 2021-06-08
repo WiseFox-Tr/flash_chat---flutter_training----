@@ -1,4 +1,3 @@
-import 'package:flash_chat/AppConst.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
