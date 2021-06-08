@@ -1,3 +1,4 @@
+import 'package:flash_chat/AppConst.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
@@ -20,7 +21,7 @@ class RoundedButton extends StatelessWidget {
           onPressed: onPressed,
           minWidth: 200.0,
           height: 42.0,
-          child: Text(label),
+          child: Text(label, style: TextStyle(color: Colors.white)),
         ),
       ),
     );
