@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import '../../AppConst.dart';
 import '../routes.dart';
 
@@ -39,12 +40,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: 60.0,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
+                AnimatedTextKit(
+                  isRepeatingAnimation: false,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      AppConst.strAppTitle,
+                      textStyle: AppConst.titleAppTextStyle,
+                      speed: Duration(milliseconds: 300),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -61,9 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   onPressed: () => Navigator.pushNamed(context, IdScreen.login_screen),
                   minWidth: 200.0,
                   height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
+                  child: Text(AppConst.strLoginBtn),
                 ),
               ),
             ),
@@ -77,9 +79,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   onPressed: () => Navigator.pushNamed(context, IdScreen.registration_screen),
                   minWidth: 200.0,
                   height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
+                  child: Text(AppConst.strRegisterBtn),
                 ),
               ),
             ),
