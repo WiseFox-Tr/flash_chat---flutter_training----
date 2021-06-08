@@ -6,7 +6,7 @@ class RoundedButton extends StatelessWidget {
   final Color color;
   final Function onPressed;
 
-  RoundedButton({this.label, this.color, @required this.onPressed});
+  RoundedButton({this.label = '', this.color, @required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
