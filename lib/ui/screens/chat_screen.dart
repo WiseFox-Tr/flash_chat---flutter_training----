@@ -1,4 +1,5 @@
 import 'package:flash_chat/controller/FlashChatBrain.dart';
+import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/AppConst.dart';
 
@@ -21,16 +22,21 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _flashChatBrain.logOutUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                //todo : Implement logout functionality
-              }),
+            icon: Icon(Icons.close),
+            onPressed: () => _flashChatBrain.closeChatCallback(context),
+          ),
         ],
         title: Text('⚡️Chat'),
         backgroundColor: Colors.lightBlueAccent,
