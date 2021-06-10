@@ -44,9 +44,18 @@ class AppConst {
     ),
   );
 
-  static const strEnterEMail = 'Enter your email.';
-  static const strEnterPassword = 'Enter your password.';
+  static const strEnterEMail = 'Entrez votre email.';
+  static const strEnterPassword = 'Entrez votre password.';
   static const strAppTitle = 'Flash Chat';
-  static const strLoginBtn = 'Log In';
-  static const strRegisterBtn = 'Register';
+  static const strLoginBtn = 'Se connecter';
+  static const strRegisterBtn = 'Créer un compte';
+
+  //str error
+  static const strErrorDefaultMessage = 'Un problème est survenu ...';
+  static const strErrorEMailAlreadyInUse = "L'e-mail saisi est déjà utilisé ...";
+  static const strErrorEmptyField = "Au moins l'un des champs est vide ...";
+  static const strErrorInvalidEMail = "L'adresse e-mail fournie est mal formée ...";
+  static const strErrorUserNotFound = 'Aucun utilisateur ne correspond au mail saisi ...';
+  static const strErrorWeakPassword = 'Le mot de passe doit contenir au moins 6 caractères ...';
+  static const strErrorWrongPassword = 'Le mot de passe saisi est invalide ...';
 }
