@@ -34,6 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 48.0,
                 ),
                 TextField(
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterEMail),
                   onChanged: (value) {
                     //todo : Do something with the user input.
@@ -43,6 +45,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 8.0,
                 ),
                 TextField(
+                  textAlign: TextAlign.center,
+                  obscureText: true,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterPassword),
                   onChanged: (value) {
                     //todo : Do something with the user input.

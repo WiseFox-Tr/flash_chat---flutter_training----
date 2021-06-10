@@ -36,6 +36,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 48.0,
                 ),
                 TextField(
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterEMail),
                   onChanged: (value) {
                     _flashChatBrain.setInputMail = value;
@@ -46,6 +48,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   height: 8.0,
                 ),
                 TextField(
+                  textAlign: TextAlign.center,
+                  obscureText: true,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterPassword),
                   onChanged: (value) {
                     _flashChatBrain.setInputPassword = value;
