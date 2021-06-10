@@ -1,3 +1,4 @@
+import 'package:flash_chat/controller/FlashChatBrain.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/AppConst.dart';
 
@@ -9,6 +10,16 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
+  FlashChatBrain _flashChatBrain = FlashChatBrain();
+
+  @override
+  void initState() {
+    super.initState();
+    _flashChatBrain.findCurrentUser();
+    print('DEBUG : current user mail : ${_flashChatBrain.getCurrentUserMail}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
