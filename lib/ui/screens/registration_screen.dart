@@ -1,6 +1,6 @@
 import 'package:flash_chat/AppConst.dart';
+import 'package:flash_chat/controller/FlashChatBrain.dart';
 import 'package:flash_chat/ui/components/RoundedButton.dart';
-import 'package:flash_chat/ui/routes.dart';
 import 'package:flash_chat/utilities/screen_dimensions.dart' as screenDimension;
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  FlashChatBrain _flashChatBrain = FlashChatBrain();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 TextField(
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterEMail),
                   onChanged: (value) {
+                    _flashChatBrain.setInputMail = value;
                     //todo : Do something with the user input.
                   },
                 ),
@@ -45,6 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 TextField(
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterPassword),
                   onChanged: (value) {
+                    _flashChatBrain.setInputPassword = value;
                     //todo : Do something with the user input.
                   },
                 ),
@@ -58,7 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     color: Colors.blueAccent,
                     onPressed: () {
                       //todo : Implement register functionality.
-                      Navigator.pushNamed(context, IdScreen.chat_screen);
+                      print('DEBUG : mail entered : ${_flashChatBrain.getInputMail}, password entered : ${_flashChatBrain.getInputPassword}');
                     },
                   ),
                 ),
