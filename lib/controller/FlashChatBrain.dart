@@ -10,17 +10,18 @@ class FlashChatBrain {
   final _auth = FirebaseAuth.instance;
   User _currentUser;
 
-  Future<void> registerUser(BuildContext context) async {
+  Future<void> registerCallback(BuildContext context) async {
     try{
       final newUser = await _auth.createUserWithEmailAndPassword(email: _inputMail, password: _inputPassword);
       if(newUser != null)
+        Navigator.pop(context);
         Navigator.pushNamed(context, IdScreen.chat_screen);
     } catch(e) {
       print('DEBUG : Exception : $e');
     }
   }
 
-  Future<void> logInUser(BuildContext context) async {
+  Future<void> logInCallback(BuildContext context) async {
     try{
       final loggedUser = await _auth.signInWithEmailAndPassword(email: _inputMail, password: _inputPassword);
       if(loggedUser != null) {
@@ -30,6 +31,13 @@ class FlashChatBrain {
       print('DEBUG : Exception : $e');
     }
   }
+
+  void closeChatCallback(BuildContext context) {
+    logOutUser();
+    Navigator.popUntil(context, ModalRoute.withName(IdScreen.welcome_screen));
+  }
+
+  void logOutUser() => _auth.signOut();
 
   void findCurrentUser() {
     try {
