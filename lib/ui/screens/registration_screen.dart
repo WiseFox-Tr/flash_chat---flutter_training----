@@ -39,10 +39,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterEMail),
-                  onChanged: (value) {
-                    _flashChatBrain.setInputMail = value;
-                    //todo : Do something with the user input.
-                  },
+                  onChanged: (value) => _flashChatBrain.setInputMail = value,
                 ),
                 SizedBox(
                   height: 8.0,
@@ -51,10 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   textAlign: TextAlign.center,
                   obscureText: true,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterPassword),
-                  onChanged: (value) {
-                    _flashChatBrain.setInputPassword = value;
-                    //todo : Do something with the user input.
-                  },
+                  onChanged: (value) => _flashChatBrain.setInputPassword = value,
                 ),
                 SizedBox(
                   height: 24.0,
@@ -64,10 +58,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: RoundedButton(
                     label: AppConst.strRegisterBtn,
                     color: Colors.blueAccent,
-                    onPressed: () {
-                      //todo : Implement register functionality.
-                      print('DEBUG : mail entered : ${_flashChatBrain.getInputMail}, password entered : ${_flashChatBrain.getInputPassword}');
-                    },
+                    onPressed: () async => await _flashChatBrain.registerUser(context),
                   ),
                 ),
               ],
