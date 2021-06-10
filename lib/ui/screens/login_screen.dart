@@ -1,4 +1,5 @@
 import 'package:flash_chat/AppConst.dart';
+import 'package:flash_chat/controller/FlashChatBrain.dart';
 import 'package:flash_chat/ui/components/RoundedButton.dart';
 import 'package:flash_chat/ui/routes.dart';
 import 'package:flash_chat/utilities/screen_dimensions.dart' as screenDimension;
@@ -10,6 +11,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  FlashChatBrain _flashChatBrain = FlashChatBrain();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterEMail),
-                  onChanged: (value) {
-                    //todo : Do something with the user input.
-                  },
+                  onChanged: (value) => _flashChatBrain.setInputMail = value,
                 ),
                 SizedBox(
                   height: 8.0,
@@ -48,9 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   obscureText: true,
                   decoration: AppConst.textFieldInputDecoration.copyWith(hintText: AppConst.strEnterPassword),
-                  onChanged: (value) {
-                    //todo : Do something with the user input.
-                  },
+                  onChanged: (value) => _flashChatBrain.setInputPassword = value,
                 ),
                 SizedBox(
                   height: 24.0,
@@ -60,10 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: RoundedButton(
                     label: AppConst.strLoginBtn,
                     color: Colors.lightBlueAccent,
-                    onPressed: () {
-                      //todo : Implement login functionality.
-                      Navigator.pushNamed(context, IdScreen.chat_screen);
-                    },
+                    onPressed: () => _flashChatBrain.logInUser(context),
                   ),
                 ),
               ],
