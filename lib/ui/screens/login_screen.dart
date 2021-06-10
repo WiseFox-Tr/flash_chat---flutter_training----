@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: RoundedButton(
                     label: AppConst.strLoginBtn,
                     color: Colors.lightBlueAccent,
-                    onPressed: () => _flashChatBrain.logInUser(context),
+                    onPressed: () async => await _flashChatBrain.logInUser(context),
                   ),
                 ),
               ],
