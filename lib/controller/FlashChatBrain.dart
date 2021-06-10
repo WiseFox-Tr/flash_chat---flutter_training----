@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat/ui/components/app_snack_bar.dart' as SnackBar;
 import 'package:flash_chat/ui/routes.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flash_chat/utilities/error_manager.dart' as ErrorManager;
+import 'package:flutter/material.dart';
 
 class FlashChatBrain {
 
@@ -12,23 +14,27 @@ class FlashChatBrain {
 
   Future<void> registerCallback(BuildContext context) async {
     try{
+      checkIfMailAndPasswordAreNotEmpty();
       final newUser = await _auth.createUserWithEmailAndPassword(email: _inputMail, password: _inputPassword);
       if(newUser != null)
         Navigator.pop(context);
         Navigator.pushNamed(context, IdScreen.chat_screen);
     } catch(e) {
       print('DEBUG : Exception : $e');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
     }
   }
 
   Future<void> logInCallback(BuildContext context) async {
     try{
+      checkIfMailAndPasswordAreNotEmpty();
       final loggedUser = await _auth.signInWithEmailAndPassword(email: _inputMail, password: _inputPassword);
       if(loggedUser != null) {
         Navigator.pushNamed(context, IdScreen.chat_screen);
       }
     } catch(e) {
       print('DEBUG : Exception : $e');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
     }
   }
 
@@ -47,6 +53,12 @@ class FlashChatBrain {
     } catch(e) {
       print('DEBUG : Exception : $e');
     }
+  }
+
+  ///if mail or password are empty, it throws an exception.
+  void checkIfMailAndPasswordAreNotEmpty() {
+    if(_inputMail == null || _inputPassword == null)
+      throw Exception('One required attribute is empty');
   }
 
   get getInputMail => _inputMail;
