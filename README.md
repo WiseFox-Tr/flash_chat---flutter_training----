@@ -10,7 +10,7 @@ Objective is to build a modern messaging app with an account system by using Fir
 ![Finished App](https://github.com/londonappbrewery/Images/blob/master/flash_chat_flutter_demo.gif)
 
 ## What you will learn
-- Incorporate Firebase, use Firebase authentication to register and sign in users & Cloud Firestore to store and retrieve data on the fly.
+- Incorporate Firebase, use Firebase authentication to register and sign in users & Cloud Firestore to store and retrieve data on the fly (only for Android)
 - Create animations using the Flutter Hero widget & create custom aniamtions using Flutter's animation controller. 
 - Learn all about mixins and how they differ from superclasses.
 - Learn about Streams and how they work.
