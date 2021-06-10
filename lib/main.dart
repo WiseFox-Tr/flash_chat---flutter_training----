@@ -1,7 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(FlashChatApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(FlashChatApp());
+}
 
 class FlashChatApp extends StatelessWidget {
   @override
