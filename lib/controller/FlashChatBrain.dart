@@ -20,6 +20,17 @@ class FlashChatBrain {
     }
   }
 
+  Future<void> logInUser(BuildContext context) async {
+    try{
+      final loggedUser = await _auth.signInWithEmailAndPassword(email: _inputMail, password: _inputPassword);
+      if(loggedUser != null) {
+        Navigator.pushNamed(context, IdScreen.chat_screen);
+      }
+    } catch(e) {
+      print('DEBUG : Exception : $e');
+    }
+  }
+
   void findCurrentUser() {
     try {
       _currentUser = _auth.currentUser;
