@@ -58,7 +58,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: RoundedButton(
                     label: AppConst.strRegisterBtn,
                     color: Colors.blueAccent,
-                    onPressed: () async => await _flashChatBrain.registerUser(context),
+                    onPressed: () async => await _flashChatBrain.registerCallback(context),
                   ),
                 ),
               ],
