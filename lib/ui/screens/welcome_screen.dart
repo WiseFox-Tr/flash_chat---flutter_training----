@@ -47,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     TypewriterAnimatedText(
                       AppConst.strAppTitle,
                       textStyle: AppConst.titleAppTextStyle,
-                      speed: Duration(milliseconds: 300),
+                      speed: Duration(milliseconds: 200),
                     ),
                   ],
                 ),
