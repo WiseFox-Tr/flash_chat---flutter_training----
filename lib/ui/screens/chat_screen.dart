@@ -16,7 +16,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _flashChatBrain.findCurrentUser();
+    _flashChatBrain.findCurrentUser(context);
     print('DEBUG : current user mail : ${_flashChatBrain.getCurrentUserMail}');
   }
 
