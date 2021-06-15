@@ -23,8 +23,7 @@ class FlashChatBrain {
         Navigator.pop(context);
         Navigator.pushNamed(context, IdScreen.chat_screen);
     } catch(e) {
-      print('DEBUG : Exception : $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
+      catchErrorCallback(e, context);
     }
   }
 
@@ -36,8 +35,7 @@ class FlashChatBrain {
         Navigator.pushNamed(context, IdScreen.chat_screen);
       }
     } catch(e) {
-      print('DEBUG : Exception : $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
+      catchErrorCallback(e, context);
     }
   }
 
@@ -48,13 +46,13 @@ class FlashChatBrain {
 
   void logOutUser() => _auth.signOut();
 
-  void findCurrentUser() {
+  void findCurrentUser(BuildContext context) {
     try {
       _currentUser = _auth.currentUser;
       if(_currentUser == null)
         throw Exception('Current user is null !');
     } catch(e) {
-      print('DEBUG : Exception : $e');
+      catchErrorCallback(e, context);
     }
   }
 
@@ -80,8 +78,7 @@ class FlashChatBrain {
         });
       }
     } catch(e) {
-      print('DEBUG : Exception : $e');
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
+      catchErrorCallback(e, context);
     }
   }
 
@@ -108,6 +105,11 @@ class FlashChatBrain {
         return Column(children: messageWidgets);
       },
     );
+  }
+
+  void catchErrorCallback(Exception e, BuildContext context) {
+    print('DEBUG : Exception : $e');
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
   }
 
   get getInputMail => _inputMail;
