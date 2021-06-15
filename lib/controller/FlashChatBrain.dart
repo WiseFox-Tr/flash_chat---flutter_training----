@@ -60,21 +60,29 @@ class FlashChatBrain {
 
   ///if mail or password are empty, it throws an exception.
   void checkIfMailAndPasswordAreNotEmpty() {
-    if(_inputMail == null || _inputPassword == null)
-      throw Exception('One required attribute is empty');
+    if(_inputMail == null || _inputPassword == null || _inputMail.isEmpty || _inputPassword.isEmpty)
+      throw Exception('One required attribute is null or empty');
   }
 
   //------------ FirebaseFirestore methods --------------//
 
-  ///save message send by logged user into firestore's collection dedicated to store messages.
-  void sendMessageCallback(String sender) {
-    if(_inputMessageText != null) {
-      _firestore.collection(AppConst.firestoreCollectionMessages).add({
-        AppConst.firestoreFieldText : _inputMessageText,
-        AppConst.firestoreFieldSender : sender,
-      });
+  ///saves messages send by logged user into firestore's collection dedicated to store messages.
+  ///
+  /// If message to send is null or empty -> Throw an exception
+  void sendMessageCallback(BuildContext context) {
+    try {
+      if(_inputMessageText == null || _inputMessageText.isEmpty) {
+        throw Exception('Message field is null or empty');
+      } else {
+        _firestore.collection(AppConst.firestoreCollectionMessages).add({
+          AppConst.firestoreFieldText : _inputMessageText,
+          AppConst.firestoreFieldSender : _currentUser.email,
+        });
+      }
+    } catch(e) {
+      print('DEBUG : Exception : $e');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar.getSnackBar(ErrorManager.getErrorMessageForUser(e.toString())));
     }
-    //todo : throw exception if null
   }
 
   /// gets a StreamBuilder which itself returns a List of Messages into a Column
