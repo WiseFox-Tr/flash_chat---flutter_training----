@@ -62,4 +62,5 @@ class AppConst {
   static const strErrorUserNotFound = 'Aucun utilisateur ne correspond au mail saisi ...';
   static const strErrorWeakPassword = 'Le mot de passe doit contenir au moins 6 caractères ...';
   static const strErrorWrongPassword = 'Le mot de passe saisi est invalide ...';
+  static const strErrorMessageNullOrEmpty = 'Votre message doit contenir au moins 1 caractère';
 }
