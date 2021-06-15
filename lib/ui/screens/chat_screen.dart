@@ -45,6 +45,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            _flashChatBrain.getMessageStreamBuilder(), // <-- StreamBuilder object
             Container(
               decoration: AppConst.messageContainerDecoration,
               child: Row(

@@ -66,7 +66,7 @@ class FlashChatBrain {
 
   //------------ FirebaseFirestore methods --------------//
 
-  ///save message send by logged user
+  ///save message send by logged user into firestore's collection dedicated to store messages.
   void sendMessageCallback(String sender) {
     if(_inputMessageText != null) {
       _firestore.collection(AppConst.firestoreCollectionMessages).add({
@@ -77,27 +77,35 @@ class FlashChatBrain {
     //todo : throw exception if null
   }
 
-  Widget messagesStreamBuilderCallback(BuildContext context, AsyncSnapshot<QuerySnapshot<Object>> snapshot) {
-    if(!snapshot.hasData) {
-      return Center(
-        child: CircularProgressIndicator(backgroundColor: Colors.blueAccent),
-      );
-    }
-    final messagesDocs = snapshot.data.docs;
-    List<Text> messageWidgets = [];
-    messagesDocs.forEach((message) {
-      final messageText = message.get(AppConst.firestoreFieldText);
-      final sender = message.get(AppConst.firestoreFieldSender);
-      messageWidgets.add(Text('$messageText from $sender'));
-    });
-    return Column(children: messageWidgets);
+  /// gets a StreamBuilder which itself returns a List of Messages into a Column
+  ///
+  /// - stream = messages collection
+  /// - stream builder : if data -> Column of message & sender, if not -> circular Progress Indicator
+  StreamBuilder getMessageStreamBuilder() {
+    return StreamBuilder(
+      stream: _firestore.collection(AppConst.firestoreCollectionMessages).snapshots(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(backgroundColor: Colors.blueAccent),
+          );
+        }
+        final messagesDocs = snapshot.data.docs;
+        List<Text> messageWidgets = [];
+        messagesDocs.forEach((message) {
+          final messageText = message.get(AppConst.firestoreFieldText);
+          final sender = message.get(AppConst.firestoreFieldSender);
+          messageWidgets.add(Text('$messageText from $sender'));
+        });
+        return Column(children: messageWidgets);
+      },
+    );
   }
 
   get getInputMail => _inputMail;
   get getInputPassword => _inputPassword;
   get getInputMessageText => _inputMessageText;
   get getCurrentUserMail => _currentUser.email;
-  get getMessagesStream => _firestore.collection(AppConst.firestoreCollectionMessages).snapshots();
   set setInputMail(String newMail) => _inputMail = newMail;
   set setInputPassword(String newPassword) => _inputPassword = newPassword;
   set setInputMessageText(String newMessage) => _inputMessageText = newMessage;
