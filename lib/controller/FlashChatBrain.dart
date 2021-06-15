@@ -77,21 +77,27 @@ class FlashChatBrain {
     //todo : throw exception if null
   }
 
-  void messagesStream() async {
-    await _firestore.collection(AppConst.firestoreCollectionMessages).snapshots().forEach((snapshot) {
-        int count = 1;
-        snapshot.docs.forEach((message) {
-          print('DEBUG : message n°$count : ${message.data()}');
-          count++;
-        });
-        print('\n');
+  Widget messagesStreamBuilderCallback(BuildContext context, AsyncSnapshot<QuerySnapshot<Object>> snapshot) {
+    if(!snapshot.hasData) {
+      return Center(
+        child: CircularProgressIndicator(backgroundColor: Colors.blueAccent),
+      );
+    }
+    final messagesDocs = snapshot.data.docs;
+    List<Text> messageWidgets = [];
+    messagesDocs.forEach((message) {
+      final messageText = message.get(AppConst.firestoreFieldText);
+      final sender = message.get(AppConst.firestoreFieldSender);
+      messageWidgets.add(Text('$messageText from $sender'));
     });
+    return Column(children: messageWidgets);
   }
 
   get getInputMail => _inputMail;
   get getInputPassword => _inputPassword;
   get getInputMessageText => _inputMessageText;
   get getCurrentUserMail => _currentUser.email;
+  get getMessagesStream => _firestore.collection(AppConst.firestoreCollectionMessages).snapshots();
   set setInputMail(String newMail) => _inputMail = newMail;
   set setInputPassword(String newPassword) => _inputPassword = newPassword;
   set setInputMessageText(String newMessage) => _inputMessageText = newMessage;
