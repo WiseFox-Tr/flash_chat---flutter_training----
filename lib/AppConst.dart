@@ -5,6 +5,10 @@ class AppConst {
   static const String tagLoginBtn = 'tagLoginBtn';
   static const String tagRegisterBtn = 'tagRegisterBtn';
 
+  static const String firestoreCollectionMessages = 'messages';
+  static const String firestoreFieldSender = 'sender';
+  static const String firestoreFieldText = 'text';
+
   static const sendButtonTextStyle = TextStyle(
     color: Colors.lightBlueAccent,
     fontWeight: FontWeight.bold,
