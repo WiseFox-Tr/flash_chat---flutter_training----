@@ -68,9 +68,23 @@ class FlashChatBrain {
 
   ///save message send by logged user
   void sendMessageCallback(String sender) {
-    _firestore.collection(AppConst.firestoreCollectionMessages).add({
-      AppConst.firestoreFieldText : _inputMessageText,
-      AppConst.firestoreFieldSender : sender,
+    if(_inputMessageText != null) {
+      _firestore.collection(AppConst.firestoreCollectionMessages).add({
+        AppConst.firestoreFieldText : _inputMessageText,
+        AppConst.firestoreFieldSender : sender,
+      });
+    }
+    //todo : throw exception if null
+  }
+
+  void messagesStream() async {
+    await _firestore.collection(AppConst.firestoreCollectionMessages).snapshots().forEach((snapshot) {
+        int count = 1;
+        snapshot.docs.forEach((message) {
+          print('DEBUG : message n°$count : ${message.data()}');
+          count++;
+        });
+        print('\n');
     });
   }
 
