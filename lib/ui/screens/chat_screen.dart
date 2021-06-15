@@ -58,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => _flashChatBrain.sendMessageCallback(_flashChatBrain.getCurrentUserMail),
+                    onPressed: () => _flashChatBrain.sendMessageCallback(context),
                     child: Text(
                       'Send',
                       style: AppConst.sendButtonTextStyle,
