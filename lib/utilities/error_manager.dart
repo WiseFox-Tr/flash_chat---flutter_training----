@@ -13,6 +13,8 @@ String getErrorMessageForUser(String exceptionMessage) {
     return AppConst.strErrorUserNotFound;
   else if(exceptionMessage.contains('[firebase_auth/wrong-password]'))
     return AppConst.strErrorWrongPassword;
+  else if(exceptionMessage.contains('Message field is null or empty'))
+    return AppConst.strErrorMessageNullOrEmpty;
   else
     return AppConst.strErrorDefaultMessage;
 }
