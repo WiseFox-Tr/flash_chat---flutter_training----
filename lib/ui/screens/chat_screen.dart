@@ -1,5 +1,4 @@
 import 'package:flash_chat/controller/FlashChatBrain.dart';
-import 'package:flash_chat/ui/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/AppConst.dart';
 
@@ -53,16 +52,12 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      onChanged: (value) {
-                        //todo : Do something with the user input.
-                      },
+                      onChanged: (newMessageText) => _flashChatBrain.setInputMessageText = newMessageText,
                       decoration: AppConst.messageTextFieldDecoration,
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      //todo : Implement send functionality.
-                    },
+                    onPressed: () => _flashChatBrain.sendMessageCallback(_flashChatBrain.getCurrentUserMail),
                     child: Text(
                       'Send',
                       style: AppConst.sendButtonTextStyle,
