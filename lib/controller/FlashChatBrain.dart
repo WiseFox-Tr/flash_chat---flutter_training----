@@ -78,8 +78,10 @@ class FlashChatBrain {
         _firestore.collection(AppConst.firestoreCollectionMessages).add({
           AppConst.firestoreFieldText : _inputMessageText,
           AppConst.firestoreFieldSender : _currentUser.email,
+          AppConst.firestoreFieldTimeStamp : FieldValue.serverTimestamp(),
         });
         _textEditingController.clear();
+        _inputMessageText = '';
       }
     } catch(e) {
       catchErrorCallback(e, context);
@@ -92,7 +94,7 @@ class FlashChatBrain {
   /// - stream builder : if data -> returns a ListView , if not -> returns circular Progress Indicator
   StreamBuilder getMessageStreamBuilder() {
     return StreamBuilder(
-      stream: _firestore.collection(AppConst.firestoreCollectionMessages).snapshots(),
+      stream: _firestore.collection(AppConst.firestoreCollectionMessages).orderBy(AppConst.firestoreFieldTimeStamp).snapshots(),
       builder: (context, snapshot) {
         if(!snapshot.hasData) {
           return Center(child: CircularProgressIndicator(backgroundColor: Colors.blueAccent));
@@ -100,7 +102,7 @@ class FlashChatBrain {
         //if snapshot has data, retrieves docs, prepares a list of Bubble Widgets to display messages
         //and for each doc (message), add a Message Bubble Widget into with extracted information.
         //at the end, returns a ListView
-        final messagesDocs = snapshot.data.docs;
+        final messagesDocs = snapshot.data.docs.reversed;
         List<MessageBubble> messageBubbles = [];
         messagesDocs.forEach((message) {
           final messageText = message.get(AppConst.firestoreFieldText);
