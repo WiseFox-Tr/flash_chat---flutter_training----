@@ -8,6 +8,7 @@ class AppConst {
   static const String firestoreCollectionMessages = 'messages';
   static const String firestoreFieldSender = 'sender';
   static const String firestoreFieldText = 'text';
+  static const String firestoreFieldTimeStamp = 'timestamp';
 
   static const sendButtonTextStyle = TextStyle(
     color: Colors.lightBlueAccent,
