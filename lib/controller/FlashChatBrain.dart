@@ -13,6 +13,7 @@ class FlashChatBrain {
   String _inputMail;
   String _inputPassword;
   String _inputMessageText;
+  TextEditingController _textEditingController = TextEditingController();
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   User _currentUser;
@@ -78,6 +79,7 @@ class FlashChatBrain {
           AppConst.firestoreFieldText : _inputMessageText,
           AppConst.firestoreFieldSender : _currentUser.email,
         });
+        _textEditingController.clear();
       }
     } catch(e) {
       catchErrorCallback(e, context);
@@ -119,6 +121,7 @@ class FlashChatBrain {
   get getInputPassword => _inputPassword;
   get getInputMessageText => _inputMessageText;
   get getCurrentUserMail => _currentUser.email;
+  get getTextEditingController => _textEditingController;
   set setInputMail(String newMail) => _inputMail = newMail;
   set setInputPassword(String newPassword) => _inputPassword = newPassword;
   set setInputMessageText(String newMessage) => _inputMessageText = newMessage;

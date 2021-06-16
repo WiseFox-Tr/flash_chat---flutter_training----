@@ -53,6 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: _flashChatBrain.getTextEditingController,
                       onChanged: (newMessageText) => _flashChatBrain.setInputMessageText = newMessageText,
                       decoration: AppConst.messageTextFieldDecoration,
                     ),
