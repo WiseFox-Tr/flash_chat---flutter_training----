@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/AppConst.dart';
+import 'package:flash_chat/ui/components/MessageBubble.dart';
+import 'package:flash_chat/ui/components/MessagesListView.dart';
 import 'package:flash_chat/ui/components/app_snack_bar.dart' as SnackBar;
 import 'package:flash_chat/ui/routes.dart';
 import 'package:flash_chat/utilities/error_manager.dart' as ErrorManager;
@@ -82,27 +84,28 @@ class FlashChatBrain {
     }
   }
 
-  /// gets a StreamBuilder which itself returns a List of Messages into a Column
+  /// gets a StreamBuilder which itself returns a List of Messages into a list View
   ///
   /// - stream = messages collection
-  /// - stream builder : if data -> Column of message & sender, if not -> circular Progress Indicator
+  /// - stream builder : if data -> returns a ListView , if not -> returns circular Progress Indicator
   StreamBuilder getMessageStreamBuilder() {
     return StreamBuilder(
       stream: _firestore.collection(AppConst.firestoreCollectionMessages).snapshots(),
       builder: (context, snapshot) {
         if(!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(backgroundColor: Colors.blueAccent),
-          );
+          return Center(child: CircularProgressIndicator(backgroundColor: Colors.blueAccent));
         }
+        //if snapshot has data, retrieves docs, prepares a list of Bubble Widgets to display messages
+        //and for each doc (message), add a Message Bubble Widget into with extracted information.
+        //at the end, returns a ListView
         final messagesDocs = snapshot.data.docs;
-        List<Text> messageWidgets = [];
+        List<MessageBubble> messageBubbles = [];
         messagesDocs.forEach((message) {
           final messageText = message.get(AppConst.firestoreFieldText);
           final sender = message.get(AppConst.firestoreFieldSender);
-          messageWidgets.add(Text('$messageText from $sender'));
+          messageBubbles.add(MessageBubble(message: messageText, sender: sender));
         });
-        return Column(children: messageWidgets);
+        return MessagesListView(messageBubbles: messageBubbles);
       },
     );
   }
