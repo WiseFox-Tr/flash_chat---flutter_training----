@@ -105,7 +105,7 @@ class FlashChatBrain {
         messagesDocs.forEach((message) {
           final messageText = message.get(AppConst.firestoreFieldText);
           final sender = message.get(AppConst.firestoreFieldSender);
-          messageBubbles.add(MessageBubble(message: messageText, sender: sender));
+          messageBubbles.add(MessageBubble(message: messageText, sender: sender, isUserSender: sender == _currentUser.email));
         });
         return MessagesListView(messageBubbles: messageBubbles);
       },
