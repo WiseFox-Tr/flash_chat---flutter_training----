@@ -21,7 +21,7 @@ class FlashChatBrain {
   Future<void> registerCallback(BuildContext context) async {
     try{
       checkIfMailAndPasswordAreNotEmpty();
-      final newUser = await _auth.createUserWithEmailAndPassword(email: _inputMail, password: _inputPassword);
+      final newUser = await _auth.createUserWithEmailAndPassword(email: _inputMail.trim(), password: _inputPassword.trim());
       if(newUser != null)
         Navigator.pop(context);
         Navigator.pushNamed(context, IdScreen.chat_screen);
@@ -33,7 +33,7 @@ class FlashChatBrain {
   Future<void> logInCallback(BuildContext context) async {
     try{
       checkIfMailAndPasswordAreNotEmpty();
-      final loggedUser = await _auth.signInWithEmailAndPassword(email: _inputMail, password: _inputPassword);
+      final loggedUser = await _auth.signInWithEmailAndPassword(email: _inputMail.trim(), password: _inputPassword.trim());
       if(loggedUser != null) {
         Navigator.pushNamed(context, IdScreen.chat_screen);
       }
@@ -76,7 +76,7 @@ class FlashChatBrain {
         throw Exception('Message field is null or empty');
       } else {
         _firestore.collection(AppConst.firestoreCollectionMessages).add({
-          AppConst.firestoreFieldText : _inputMessageText,
+          AppConst.firestoreFieldText : _inputMessageText.trim(),
           AppConst.firestoreFieldSender : _currentUser.email,
           AppConst.firestoreFieldTimeStamp : FieldValue.serverTimestamp(),
         });
